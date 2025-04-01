@@ -1,5 +1,6 @@
 package com.tadekduran.turnos.controller;
 
+import com.tadekduran.turnos.dto.TurnoDTO;
 import com.tadekduran.turnos.model.Turno;
 import com.tadekduran.turnos.service.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class TurnoController {
     private ITurnoService turnoServ;
 
     @PostMapping("/crear")
-    public String crearTurno(@RequestBody LocalDate fecha, @RequestBody String tratamiento, @RequestBody String dniPaciente)    {
-        turnoServ.saveTurno(fecha, tratamiento, dniPaciente);
+    public String crearTurno(@RequestBody TurnoDTO turno)    {
+        turnoServ.saveTurno(turno.getFecha(), turno.getTratamiento(), turno.getDniPaciente());
         return "Turno creado correctamente.";
     }
 
